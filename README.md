@@ -1,7 +1,7 @@
 
 # Sweet Home Api
 
-second year project of esi sba
+Second year esi project that design a home automation system that is capable of being controlled remotely by using a landline connection
 
 
 
