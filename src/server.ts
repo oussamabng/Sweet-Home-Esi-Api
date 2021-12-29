@@ -2,9 +2,11 @@ import http from 'http';
 import express, { Express } from 'express';
 import morgan from 'morgan';
 
+require('dotenv').config()
+
 import mongoose from "mongoose";
 
-import { userRouter } from './routes/user';
+const { userRouter } = require('./routes/user.js');
 import { alarmRouter } from './routes/alarm';
 import { armingRouter } from './routes/arming';
 import { dhtRouter } from './routes/dht';
@@ -17,7 +19,6 @@ import { routineRouter } from './routes/routine';
 import { ultrasonRouter } from './routes/ultrason';
 
 const router: Express = express();
-
 
 
 
