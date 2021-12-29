@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const checkJwt = (req, res, next)=> {
+const checkJwt = (req:any, res:any, next:any)=> {
   try {
     const token = req.header("x-auth-token");
     if (!token) return res.status(401).send({message:"Access Denied"});
@@ -13,4 +13,4 @@ const checkJwt = (req, res, next)=> {
   }
 };
 
-module.exports.checkJwt = checkJwt;
+export { checkJwt }

@@ -1,16 +1,17 @@
-const { errorHandler } = require('../helpers/error_handler');
-const { User } = require('../models/user');
-const { getAll, getOne,createOne,updateOne,deleteOne } = require ('./route')
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const _ = require("lodash");
-const { checkJwt } = require("../middlwares/auth");
-const express = require("express")
+import { errorHandler } from '../helpers/error_handler';
+import { User } from '../models/user';
+import { getAll, getOne,createOne,updateOne,deleteOne } from './route'
+
+import express from "express";
+import { checkJwt } from "../middlwares/auth";
+import _ from "lodash";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
 // get all users
-router.get('/api/user',checkJwt,(req,res)=>{
+router.get('/api/user',checkJwt,(req:any,res:any)=>{
     if (req.user_type === "admin"){
         getAll(User,req,res)
     } else return res.status(401).send({
@@ -19,7 +20,7 @@ router.get('/api/user',checkJwt,(req,res)=>{
 });
 
 // get a user
-router.get("/api/user/:id",[checkJwt],async(req,res)=>{
+router.get("/api/user/:id",[checkJwt],async(req:any,res:any)=>{
     if (req.user_type === "admin"){
         getOne(User,req,res);
     } else return res.status(401).send({
@@ -28,7 +29,7 @@ router.get("/api/user/:id",[checkJwt],async(req,res)=>{
 });
 
 // create a user
-router.post("/api/user/",[checkJwt],async(req,res)=>{
+router.post("/api/user/",[checkJwt],async(req:any,res:any)=>{
     if (req.user_type === "admin"){
         createOne(User,req,res);
     } else return res.status(401).send({
@@ -37,7 +38,7 @@ router.post("/api/user/",[checkJwt],async(req,res)=>{
 });
 
 // update user
-router.patch('/api/user/:id',[], async(req, res) => {
+router.patch('/api/user/:id',[], async(req:any, res:any) => {
     if (req.user_type === "admin"){
         updateOne(User,req,res);
     } else return res.status(401).send({
@@ -46,7 +47,7 @@ router.patch('/api/user/:id',[], async(req, res) => {
 });
 
 // delete user
-router.delete('/api/user/:id',[],async(req,res)=>{
+router.delete('/api/user/:id',[],async(req:any,res:any)=>{
     if (req.user_type === "admin"){
         deleteOne(User,req,res);
     } else return res.status(401).send({
@@ -55,7 +56,7 @@ router.delete('/api/user/:id',[],async(req,res)=>{
 });
 
 // register
-router.post("/api/auth/register",[],async(req,res)=>{
+router.post("/api/auth/register",[],async(req:any,res:any)=>{
     try {
         const body = req.body;
         let user = await User.findOne({email:body.email});
@@ -83,7 +84,7 @@ router.post("/api/auth/register",[],async(req,res)=>{
 });
 
 // login
-router.post("/api/auth/login",[],async(req,res)=>{
+router.post("/api/auth/login",[],async(req:any,res:any)=>{
     try {
         const body = req.body;
         const user = await User.findOne({email:body.email});
@@ -104,4 +105,4 @@ router.post("/api/auth/login",[],async(req,res)=>{
 });
 
 
-module.exports.userRouter = router;
+export { router as userRouter }

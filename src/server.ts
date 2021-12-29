@@ -6,6 +6,8 @@ require('dotenv').config()
 
 import mongoose from "mongoose";
 
+
+import { userRouter } from "./routes/user"
 import { alarmRouter } from './routes/alarm';
 import { armingRouter } from './routes/arming';
 import { dhtRouter } from './routes/dht';
@@ -16,6 +18,7 @@ import { rgbRouter } from './routes/rgb';
 import { roomRouter } from './routes/room';
 import { routineRouter } from './routes/routine';
 import { ultrasonRouter } from './routes/ultrason';
+
 
 const router: Express = express();
 
@@ -48,7 +51,9 @@ mongoose.connect("mongodb+srv://swap:oussamabng@cluster0.fp0lj.mongodb.net/Sweet
     console.log("Connected to database")
 })
 
-/** Routes */
+
+
+router.use(userRouter);
 router.use(alarmRouter);
 router.use(armingRouter);
 router.use(dhtRouter);
@@ -59,6 +64,8 @@ router.use(rgbRouter);
 router.use(roomRouter);
 router.use(routineRouter);
 router.use(ultrasonRouter);
+
+
 
 /** Error handling */
 router.use((req, res, next) => {

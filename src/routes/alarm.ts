@@ -2,7 +2,7 @@ import express,{Request,Response} from 'express';
 import { Alarm } from '../models/alarm';
 import { getAll, getOne,createOne,updateOne,deleteOne } from './route';
 
-const { checkJwt } = require('../middlwares/auth.js');
+const { checkJwt } = require('../middlwares/auth');
 const router = express.Router();
 
 // get all Alarm
