@@ -6,7 +6,6 @@ require('dotenv').config()
 
 import mongoose from "mongoose";
 
-const { userRouter } = require('./routes/user.js');
 import { alarmRouter } from './routes/alarm';
 import { armingRouter } from './routes/arming';
 import { dhtRouter } from './routes/dht';
@@ -50,7 +49,6 @@ mongoose.connect("mongodb+srv://swap:oussamabng@cluster0.fp0lj.mongodb.net/Sweet
 })
 
 /** Routes */
-router.use(userRouter);
 router.use(alarmRouter);
 router.use(armingRouter);
 router.use(dhtRouter);
