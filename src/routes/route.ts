@@ -1,9 +1,5 @@
 import express,{Request,Response} from 'express';
-import mongoose from 'mongoose';
 import { errorHandler } from '../helpers/error_handler';
-import { User } from '../models/user';
-
-
 
 const router = express.Router();
 

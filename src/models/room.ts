@@ -7,6 +7,7 @@ const roomSchema = new mongoose.Schema({
       type: String,
       enum: ["kitchen", "hallway", "livingRoom", "bedroom", "office"]
     },
+    
 });
 
 const Room = mongoose.model("Room",roomSchema);
